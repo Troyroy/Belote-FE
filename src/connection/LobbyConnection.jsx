@@ -2,8 +2,7 @@ import axios from "axios";
 import TokenManger from "../auth/TokenManager";
 
 const apiClientHosted = axios.create({
-  baseURL: "http://145.93.60.182:8080",
-  withCredentials: false, // Send cookies and HTTP auth information
+  baseURL: "https://belote-backend-latest.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,7 +10,6 @@ const apiClientHosted = axios.create({
 
 const apiClientLocal = axios.create({
   baseURL: "http://localhost:8080",
-  withCredentials: false, // Send cookies and HTTP auth information
   headers: {
     "Content-Type": "application/json",
   },
@@ -19,7 +17,7 @@ const apiClientLocal = axios.create({
 
 const LobbyConnection = {
   createLobby: (userID) =>
-    apiClientLocal
+    apiClientHosted
       .post(
         `/lobby/${userID}`,
         {},
@@ -31,7 +29,7 @@ const LobbyConnection = {
       )
       .then((response) => response.data),
   joinLobby: (userID, lobbyID) =>
-    apiClientLocal
+    apiClientHosted
       .post(
         `/lobby/${userID}/${lobbyID}`,
         {},
@@ -43,7 +41,7 @@ const LobbyConnection = {
       )
       .then((response) => response.data),
   getLobby: (lobbyID) =>
-    apiClientLocal
+    apiClientHosted
       .get(`/lobby/${lobbyID}`, {
         headers: {
           Authorization: `Bearer ${TokenManger.getToken()}`,

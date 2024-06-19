@@ -2,8 +2,7 @@ import axios from "axios";
 import TokenManger from "../auth/TokenManager";
 
 const apiClientHosted = axios.create({
-  baseURL: "http://145.93.60.182:8080",
-  withCredentials: false, // Send cookies and HTTP auth information
+  baseURL: "https://belote-backend-latest.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,7 +10,6 @@ const apiClientHosted = axios.create({
 
 const apiClientLocal = axios.create({
   baseURL: "http://localhost:8080",
-  withCredentials: false, // Send cookies and HTTP auth information
   headers: {
     "Content-Type": "application/json",
   },
@@ -19,7 +17,7 @@ const apiClientLocal = axios.create({
 
 const GameConnection = {
   getGame: (gameID) =>
-    apiClientLocal
+    apiClientHosted
       .get(`/game/${gameID}`, {
         headers: {
           Authorization: `Bearer ${TokenManger.getToken()}`,
@@ -27,7 +25,7 @@ const GameConnection = {
       })
       .then((response) => response.data),
   createGame: (lobbyID) =>
-    apiClientLocal
+    apiClientHosted
       .post(
         `/game/${lobbyID}`,
         {},
@@ -39,7 +37,7 @@ const GameConnection = {
       )
       .then((response) => response.data),
   playCard: (cardID, gameID, playerID) => {
-    apiClientLocal
+    apiClientHosted
       .post(
         `/game/${gameID}/${cardID}`,
         {},

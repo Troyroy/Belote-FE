@@ -5,16 +5,14 @@ import axios from "axios";
 // axios with a custom config axios.create(..)
 
 const apiClientHosted = axios.create({
-  baseURL: "http://145.93.60.182:8080",
-  withCredentials: false, // Send cookies and HTTP auth information
+  baseURL: "https://belote-backend-latest.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 const apiClientLocal = axios.create({
-  baseURL: "https://belote-backend-latest.onrender.com",
-  withCredentials: false, // Send cookies and HTTP auth information
+  baseURL: "http://localhost:8080",
   headers: {
     "Content-Type": "application/json",
   },
@@ -22,13 +20,13 @@ const apiClientLocal = axios.create({
 
 const UserConnection = {
   loginUser1: () =>
-    apiClientLocal.get("/users").then((response) => response.data.todos),
+    apiClientHosted.get("/users").then((response) => response.data.todos),
   loginUser: (loginRequest) =>
-    apiClientLocal
+    apiClientHosted
       .post("/users/login", loginRequest)
       .then((response) => response.data),
   registerUser: (createUserRequest) =>
-    apiClientLocal
+    apiClientHosted
       .post("/users", createUserRequest)
       .then((response) => response.data),
 };

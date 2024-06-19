@@ -22,7 +22,8 @@ const useStompClient = (roomID) => {
   // Function to setup STOMP client
   const setupStompClient = useCallback(() => {
     const client = new Client({
-      brokerURL: "ws://localhost:8080/ws",
+      //brokerURL: "ws://localhost:8080/ws",
+      brokerURL: "wss://belote-backend-latest.onrender.com/ws",
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
