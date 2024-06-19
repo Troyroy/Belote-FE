@@ -45,10 +45,7 @@ function Table(props) {
               hand={
                 props.gameState.hands[
                   calculatePosition(
-                    getByValue(
-                      props.gameState.players,
-                      parseInt(localStorage.getItem("userID"))
-                    ),
+                    getByValue(props.gameState.players, playerID),
                     2
                   )
                 ]
@@ -64,10 +61,7 @@ function Table(props) {
               hand={
                 props.gameState.hands[
                   calculatePosition(
-                    getByValue(
-                      props.gameState.players,
-                      parseInt(localStorage.getItem("userID"))
-                    ),
+                    getByValue(props.gameState.players, playerID),
                     1
                   )
                 ]
@@ -93,10 +87,7 @@ function Table(props) {
               playCard={playCard}
               hand={
                 props.gameState.hands[
-                  getByValue(
-                    props.gameState.players,
-                    parseInt(localStorage.getItem("userID"))
-                  )
+                  getByValue(props.gameState.players, playerID)
                 ]
               }
               id={0}
@@ -110,10 +101,7 @@ function Table(props) {
               hand={
                 props.gameState.hands[
                   calculatePosition(
-                    getByValue(
-                      props.gameState.players,
-                      parseInt(localStorage.getItem("userID"))
-                    ),
+                    getByValue(props.gameState.players, playerID),
                     3
                   )
                 ]

@@ -34,7 +34,7 @@ function LobbyPage() {
   const startGame = () => {
     GameConnection.createGame(sessionStorage.getItem("lobbyID")).then(
       (result) => {
-        console.log(localStorage.getItem("lobbyID"));
+        //console.log(localStorage.getItem("lobbyID"));
         sessionStorage.setItem("gameID", result.id);
         navigate("/game");
       }
