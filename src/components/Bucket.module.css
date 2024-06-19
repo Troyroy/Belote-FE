@@ -1,0 +1,57 @@
+.small {
+  color: black;
+  font-size: small;
+  margin-left: 15px;
+}
+
+.container {
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  background-color: #006400;
+  border-radius: 10px;
+  padding: 0px;
+  box-sizing: border-box;
+  position: relative;
+}
+.innerContainer {
+  width: 200px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card1 {
+  position: absolute;
+  display: inline;
+  top: 5%;
+  left: 51%;
+  transform: translateX(-50%);
+}
+.card2 {
+  position: absolute;
+  margin-left: 260px;
+  top: 36%;
+  transform: rotate(270deg);
+}
+.card3 {
+  position: absolute;
+  display: inline;
+  bottom: 5%;
+  left: 51%;
+  transform: translateX(-50%);
+}
+.card4 {
+  position: absolute;
+  margin-left: 40px;
+  top: 38%;
+  transform: rotate(90deg);
+}

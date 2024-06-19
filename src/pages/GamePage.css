@@ -1,0 +1,462 @@
+/* Experiment   */
+* {
+  box-sizing: border-box;
+}
+
+ul,
+li,
+ol {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.point {
+  background: red;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 10%;
+}
+
+/* 1 -  By TAG (html name)
+   Straigh selection from the DOM element 
+  ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ */
+
+.cardHand {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 16px;
+
+  width: auto;
+  height: auto;
+  min-width: 30px;
+  min-height: 90px;
+  width: 10%;
+  max-width: -100px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.handItem {
+  float: right;
+  width: 60px;
+  height: 90px;
+  margin-left: -10px;
+  background: azure;
+  font-size: 6px;
+  padding: 1px 2px;
+  color: black;
+  border: 1px solid rgba(100, 100, 100, 0.1);
+  position: relative;
+
+  /*
+      flex-direction: row | row-reverse | column | column-reverse;
+      */
+
+  /* ↓↓↓ CSS3 ↓↓↓*/
+  border-radius: 6px;
+  /* X Y BLUR*/
+  box-shadow: 1px 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+.handItemNonRotate {
+  float: right;
+  width: 60px;
+  height: 90px;
+  margin-left: -10px;
+  background: azure;
+  font-size: 6px;
+  padding: 1px 2px;
+  color: black;
+  border: 1px solid rgba(100, 100, 100, 0.1);
+  position: relative;
+
+  /*
+      flex-direction: row | row-reverse | column | column-reverse;
+      */
+
+  /* ↓↓↓ CSS3 ↓↓↓*/
+  border-radius: 6px;
+  /* X Y BLUR*/
+  box-shadow: 1px 3px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Chainning rules by a (,):
+  all the element get the same style applied. 
+  Also, specificity wins over stacking order
+  (this rule overwrites the previous ones) */
+
+#hearth,
+#clover,
+#diamond,
+#spades {
+  text-align: left;
+}
+
+#imperial-flower {
+  border: none;
+  margin-left: auto;
+  height: 50px;
+  width: auto;
+  margin-right: auto;
+}
+
+#imperial-flower .handItem {
+  display: inline-block;
+  position: relative;
+  text-align: right;
+  z-index: 1000;
+  transition: transform 0.2s ease-out;
+}
+
+ul#imperial-flower li.handItem:nth-child(even) {
+  color: tomato;
+}
+
+#imperial-flower .handItem:hover {
+  cursor: pointer;
+  transform: translate(2%, -10%) rotate(19deg);
+  transform-origin: bottom right;
+}
+
+ul li span {
+  display: inline-block;
+  position: relative;
+}
+
+ul li span::before {
+  content: "A";
+  font-family: "Roboto Mono";
+  font-size: 20px;
+  display: block;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  margin-bottom: -10px;
+  padding-right: 8px;
+  text-align: right;
+}
+
+ul li span:last-child {
+  display: inline-block;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  transform: rotate(180deg);
+}
+
+li.handItem {
+  transition: all 0.2s ease-in-out;
+}
+
+li.handItem:hover {
+  z-index: 5000;
+}
+
+li.handItem-behind {
+  transition: all 0.4s ease-out;
+  background: linear-gradient(rgb(40, 40, 40), rgb(20, 20, 20));
+  transform: scale(0.85, 0.85);
+  color: grey;
+  z-index: 1;
+}
+
+li.handItem-behind:nth-child(even) {
+  color: grey;
+}
+
+ul#imperial-flower li.card#ace {
+  color: black;
+  transition: all 0.25s ease-in;
+}
+
+ul#imperial-flower li.card#ace:hover {
+  transform: scale(1.6, 1.6);
+  transition: all 0.15s ease-out;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 5000;
+}
+
+#ace span:first-child::after {
+  content: "♠";
+  font-size: 150px;
+  display: inline-block;
+  float: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: -90px;
+  top: 50px;
+}
+
+#ace span:last-child::before {
+  content: "A";
+  font-size: 30px;
+  color: white;
+  transform: inherit;
+  display: inline-block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: -180%;
+  top: 175%;
+  font-weight: 600;
+}
+
+#imperial-flower .card#joker:hover {
+  transform: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+#joker {
+  perspective: 1000px;
+  background: none;
+
+  perspective: 1000px;
+
+  margin-right: 500px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#joker:hover .joker-inner {
+  transform: rotate(0);
+  transform: rotateY(180deg) scale(1.3, 1.3);
+}
+
+.joker-inner {
+  transition-duration: 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.joker-inner,
+.joker-front,
+.joker-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.joker-front,
+.joker-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.front,
+ul#imperial-flower li.card#joker .joker-front {
+  z-index: 2;
+  background: aliceblue;
+}
+
+.back,
+ul#imperial-flower li.card#joker .joker-back {
+  transform: rotateY(180deg);
+  background: white;
+}
+
+.bicycle {
+  width: 110%;
+  margin-top: -100px;
+}
+
+.slabo {
+  font-family: "Slabo 27px", serif;
+  text-align: center;
+  color: azure;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.slabo:after,
+.slabo:before {
+  content: "♦";
+}
+
+.subtitle {
+  font-size: 20px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+.table {
+  width: 800px;
+  height: 800px;
+  margin: 50px auto;
+  background-color: #006400;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+.player-area {
+  width: 500px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.player-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.player.player1 {
+  position: absolute;
+  display: inline;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.player.player2 {
+  position: absolute;
+  margin-left: 450px;
+  top: 40%;
+  transform: rotate(270deg);
+}
+.player.player3 {
+  position: absolute;
+  display: inline;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.player.player4 {
+  position: absolute;
+  margin-left: -200px;
+  top: 40%;
+  transform: rotate(90deg);
+}
+
+.player.player5 {
+  position: relative;
+  height: 500px;
+  top: 16%;
+  left: 67%;
+  transform: translateX(-50%);
+}
