@@ -1,23 +1,17 @@
 import Hand from "../components/Hand";
 import React from "react";
 import Bucket from "../components/Bucket";
+import { useContext } from "react";
+import AuthContext from "../auth/AuthenticationContext";
 
 function Table(props) {
-  let playerID = localStorage.getItem("userID");
-
+  const { userDetails } = useContext(AuthContext);
+  let playerID = userDetails.id;
+  console.log(playerID);
   const playCard = (e) => {
     e.preventDefault();
-    console.log(
-      getByValue(
-        props.gameState.players,
-        parseInt(localStorage.getItem("userID"))
-      )
-    );
-    props.playCard(
-      e,
-      getByValue(props.gameState.players, sessionStorage.getItem("userID"))
-    );
-    //should send game id and player id
+    console.log(getByValue(props.gameState.players, playerID));
+    props.playCard(e, getByValue(props.gameState.players, playerID));
   };
 
   console.log(

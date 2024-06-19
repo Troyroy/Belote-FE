@@ -1,8 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../auth/AuthenticationContext";
 import LobbyConnection from "../connection/LobbyConnection";
 
 function JoinLobbyButton(props) {
+  const { userDetails } = useContext(AuthContext);
   let navigate = useNavigate();
 
   let lobbyID = null;
@@ -12,12 +15,10 @@ function JoinLobbyButton(props) {
   };
 
   const routeChange = () => {
-    LobbyConnection.joinLobby(localStorage.getItem("userID"), lobbyID).then(
-      (result) => {
-        sessionStorage.setItem("lobbyID", lobbyID);
-        navigate("/lobby");
-      }
-    );
+    LobbyConnection.joinLobby(userDetails.id, lobbyID).then((result) => {
+      sessionStorage.setItem("lobbyID", lobbyID);
+      navigate("/lobby");
+    });
   };
 
   return (

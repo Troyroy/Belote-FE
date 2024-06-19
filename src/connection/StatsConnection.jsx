@@ -17,7 +17,7 @@ const apiClientLocal = axios.create({
 
 const StatsConnection = {
   getUserGamesByUserID: (userID) =>
-    apiClientLocal
+    apiClientHosted
       .get(`/${userID}`, {
         headers: {
           Authorization: `Bearer ${TokenManger.getToken()}`,
@@ -25,7 +25,7 @@ const StatsConnection = {
       })
       .then((response) => response.data),
   getUserGamesByUsername: (username) =>
-    apiClientLocal
+    apiClientHosted
       .get(`/username/${username}}`, {
         headers: {
           Authorization: `Bearer ${TokenManger.getToken()}`,
@@ -33,7 +33,7 @@ const StatsConnection = {
       })
       .then((response) => response.data),
   getLeaderBoard: () =>
-    apiClientLocal
+    apiClientHosted
       .get(`/leaderBoard`, {
         headers: {
           Authorization: `Bearer ${TokenManger.getToken()}`,

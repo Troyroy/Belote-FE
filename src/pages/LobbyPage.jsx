@@ -19,6 +19,7 @@ function LobbyPage() {
     console.log(messagesReceived);
     console.log(messagesReceived[messagesReceived.length - 1]);
     if (messagesReceived[messagesReceived.length - 1] === "connect") {
+      //fix this ASAP
       sessionStorage.setItem("gameID", 1);
       navigate("/game");
     } else {
