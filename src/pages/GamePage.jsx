@@ -85,19 +85,19 @@ function GamePage() {
   });
 
   useEffect(() => {
+    let filetered = messagesReceived.filter((n) => n);
+    console.log(messagesReceived);
     if (messagesReceived.length <= 0) {
       GameConnection.getGame(parseInt(sessionStorage.getItem("gameID"))).then(
         (result) => {
           setGame(result);
         }
       );
-    } else if (
-      messagesReceived[messagesReceived.length - 1].hasOwnProperty("winnerTeam")
-    ) {
+    } else if (filetered[filetered.length - 1].hasOwnProperty("winnerTeam")) {
       sessionStorage.removeItem("gameID");
       sessionStorage.setItem(
         "lastGame",
-        JSON.stringify(messagesReceived[messagesReceived.length - 1])
+        JSON.stringify(filetered[filetered.length - 1])
       );
       navigate("/gameInfo");
     } else {

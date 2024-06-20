@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Bucket.module.css";
 import BackCard from "./BackCard";
 import Card from "./Card";
@@ -6,9 +6,19 @@ import { useContext } from "react";
 import AuthContext from "../auth/AuthenticationContext";
 
 function Bucket(props) {
-  let firstPlayer = props.firstPlayerBucket;
-  console.log(firstPlayer);
   const { userDetails } = useContext(AuthContext);
+  let playerInGamePosition1 = getByValue(
+    props.players,
+    parseInt(userDetails.id)
+  );
+  let firstPlayer = props.firstPlayerBucket;
+  useEffect(() => {
+    firstPlayer = firstPlayer - playerInGamePosition1;
+    if (firstPlayer < 1) {
+      firstPlayer = firstPlayer + 4;
+    }
+  });
+
   function getByValue(map, searchValue) {
     for (let i = 1; i < 5; i++) {
       if (map[i].id === searchValue) {
@@ -20,15 +30,10 @@ function Bucket(props) {
   let offset =
     firstPlayer - getByValue(props.players, parseInt(userDetails.id));
 
-  let playerInGamePosition1 = getByValue(
-    props.players,
-    parseInt(userDetails.id)
-  );
-
   function translatePosition(times) {
-    console.log(parseInt(userDetails.id));
     let calc = getByValue(props.players, parseInt(userDetails.id)) + times;
-    if (calc >= 5) {
+
+    if (calc > 4) {
       calc = calc - 4;
     }
     return calc;
@@ -36,10 +41,17 @@ function Bucket(props) {
 
   function calculatePosition(playerInGamePosition) {
     let playerOrder = playerInGamePosition - offset;
-    if (playerOrder <= 0) {
+    if (playerOrder < 1) {
       playerOrder = playerOrder + 4;
     }
-    return playerOrder - getByValue(props.players, parseInt(userDetails.id));
+    let s = playerOrder - getByValue(props.players, parseInt(userDetails.id));
+    console.log(
+      playerOrder - getByValue(props.players, parseInt(userDetails.id))
+    );
+    if (s < 0) {
+      s = s + 4;
+    }
+    return s;
   }
 
   return (

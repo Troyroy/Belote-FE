@@ -4,23 +4,25 @@ import { lobbyWebSocket } from "../connection/LobbyWebSocket";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../auth/AuthenticationContext";
 import PlayerLobby from "../components/PlayerLobby";
 function LobbyPage() {
   const navigate = useNavigate();
+  const { userDetails } = useContext(AuthContext);
   const { messagesReceived, sendMessage } = lobbyWebSocket(
     sessionStorage.getItem("lobbyID")
   );
+  const [start, setStart] = useState(<div></div>);
+
   const [lobbyState, setLobby] = useState({
     id: 1,
     players: [],
   });
 
   useEffect(() => {
-    console.log(messagesReceived);
-    console.log(messagesReceived[messagesReceived.length - 1]);
     if (messagesReceived[messagesReceived.length - 1] === "connect") {
-      //fix this ASAP
-      sessionStorage.setItem("gameID", 1);
+      sessionStorage.setItem("gameID", sessionStorage.getItem("lobbyID"));
       navigate("/game");
     } else {
       LobbyConnection.getLobby(sessionStorage.getItem("lobbyID")).then(
@@ -31,6 +33,13 @@ function LobbyPage() {
     }
   }, [messagesReceived]);
 
+  useEffect(() => {
+    if (lobbyState.players.length !== 0) {
+      if (lobbyState.players[0].id === userDetails.id) {
+        setStart(<button onClick={startGame}>Start game</button>);
+      }
+    }
+  });
   const startGame = () => {
     GameConnection.createGame(sessionStorage.getItem("lobbyID")).then(
       (result) => {
@@ -55,7 +64,7 @@ function LobbyPage() {
           </li>
         ))}
       </ul>
-      <button onClick={startGame}>Start game</button>
+      <div>{start}</div>
     </div>
   );
 }
