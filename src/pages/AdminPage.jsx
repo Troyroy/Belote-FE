@@ -15,19 +15,15 @@ function AdminPage() {
   const [leaderBoard, setLeaderBoard] = useState([]);
   useEffect(() => {
     StatsConnection.getLeaderBoard().then((result) => {
-      setLeaderBoard(result);
+       setLeaderBoard(result.sort((a, b) => (a.gamesWon < b.gamesWon ? 1 : -1)));
     });
   }, []);
 
   useEffect(() => {
     if (!isNaN(parseInt(messagesReceived[messagesReceived.length - 1]))) {
-      console.log(total);
-      console.log(time);
       if (total.length > 10) {
         total.shift();
         time.shift();
-        console.log(time);
-        console.log(total);
       }
       setTotal((prevMessages) => [
         ...prevMessages,
