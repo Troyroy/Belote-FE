@@ -2,7 +2,7 @@ import axios from "axios";
 import TokenManger from "../auth/TokenManager";
 
 const apiClientHosted = axios.create({
-  baseURL: "https://belote-backend-latest.onrender.com",
+  baseURL: "https://belote-backend-latest.onrender.com/stats",
   headers: {
     "Content-Type": "application/json",
   },
